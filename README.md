@@ -1,78 +1,60 @@
 # Honeypot-Implementation
 
+In this project, we implemented a Honey-Pot-like server which acts as a proxy server for any main server. Honey-Pot systems are used to track the behavior of attacks targeting main servers. By studying these attack patterns, system designers can develop updates to address system vulnerabilities. As the title states, this is a honeypot-like structure and not an exact honeypot. 
 
-In this project we tried to implement Honey-Pot like server which will act
-as a proxy server for any main server. Honey-Pot is used to track the
-behavior of attacks which are done on any main servers. By studying the
-type of attacks, the system designers design the system update in such a
-way that it may cover all the loopholes in the system. As the title states
-that it’ll be a honeypot like structure and not the exact honeypot. Our
-system will not only record the IPs and location but it will also take the
-screenshots of the user’s system so that the images can be studied later
-and the exact activities can be traced out. The need for this system is
-because along with tracking IP of the user, taking screenshots might give
-us a clear vision of any kind of unusual activity
+Our system not only records the IPs and locations of potential attackers but also captures screenshots of the user’s system. These images provide valuable insights into unusual activities that may occur. This additional layer of monitoring complements traditional IP tracking by offering a clearer view of malicious activity.
+
+## Flask Integration
+We utilized Flask, a lightweight web framework, to manage the HTTP routes and serve as the backbone of our web interface. Flask was used to handle login requests, simulate the user interactions with the honeypot, and manage the backend logic for IP tracking, keylogging, and screenshot capturing.
+
+### Key Features Added Using Flask:
+- **Login Page Management:** Flask routes are set up to handle user login attempts.
+- **Session Tracking:** Flask manages user sessions to track login attempts and trigger the honeypot mechanism after three failed attempts.
+- **Data Handling:** Flask processes the captured data (IP addresses, keylogs, screenshots) and stores it in a structured format (e.g., JSON).
+- **API Support:** Flask exposes endpoints to retrieve data for further analysis.
 
 ## Working
 
-**hash.py**
+### **hash.py**
 
 ![](/images/1.jpg)
 ![](/images/2.jpg)
 
-
-**Input Given in Python Script**
+### **Input Given in Python Script**
 ![](/images/3.jpg)
 
-
-**Data Stored in Json file**
+### **Data Stored in JSON File**
 ![](/images/13.jpg)
 
+This data stored in the JSON file contains the username and password of a specified user. These credentials are used for logging into the web server via the Flask-based application.
 
-This data Stored in Json file contains username and password of a specified user and then the user might use this credentials for logging into a Web Server.
+### **Login Page**
+Now we enter the credentials from the JSON data to access the login page:
 
-
-**Login Page**
-Now we enter the Credentials taken from the json data and thus we enter in the Login page
 ![](/images/4.png)
 
-
-
-**Case: i) If username and Password is correct**
+### **Case i: Correct Username and Password**
 
 ![](/images/5.png)
 
-
-**Case: ii) If Password is either Wrong or Username is Wrong**
+### **Case ii: Incorrect Username or Password**
 
 ![](/images/6.png)
 
-
-Then We Are given 3 attempts for the purpose of Login.
-
-
-If user entered the wrong credentials for 3 times out honeypot system will began where,</br>
-We Store IP of the user and all other details
+Users are given three attempts to log in. If incorrect credentials are entered three times, the honeypot system activates, recording the IP address and other details of the user:
 
 ![](/images/7.png)
 
-
-**The Keylogger:** 
+### **The Keylogger:**
 
 ![](/images/8.jpg)
 ![](/images/9.jpg)
 
-Screenshots and logs taken by the keylogger
+Keylogger captures and stores logs, along with screenshots:
 
 ![](/images/10.jpg)
 
-
-**Image Capture:** 
+### **Image Capture:**
 
 ![](/images/11.jpg)
 
-
-
-
-</br></br>
- Licensed under the [MIT License](LICENSE).
